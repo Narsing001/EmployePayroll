@@ -1,0 +1,82 @@
+ <div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                New Advance
+            </div>
+             <div class="card-body">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>EmployeeId</th>
+                            <th>EmpName</th>
+                            <th>EmpContactNo</th>
+                            <th>advanceDate</th>
+                            <th>advanceId</th>
+                            <th>advanceAmount</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let item of advanceArray;let i=index ">
+                            <td>{{i+1}}</td>
+                            <td>{{item.employeeId}}</td>
+                            <td>{{item.empName}}</td>
+                            <td>{{item.empContactNo}}</td>
+                            <td>{{item.advanceDate|date:'yyyy-MM-dd'}}</td>
+                            <td>{{item.advanceId}}</td>
+                            <td>{{item.advanceAmount}}</td>
+                           
+                             <td>
+                                <a  style="text-decoration:none;cursor:pointer;" class="bg-success mx-2 py-1 px-2 rounded text-white" (click)=" getAtedanceByAdvanceId(item.advanceId)" >Edit</a>
+                    
+                                <a style="text-decoration:none; cursor:pointer;" class="bg-danger py-1 px-2 rounded text-white" (click)="getDeleteadvance(item.advanceId)">Delete</a>
+                            </td>
+                             
+                        </tr>
+                     </tbody>
+                  </table>
+             </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Add new Advance
+            </div>
+             <div class="card-body">
+                 <div class="row">
+                     <div class="col-6">
+                        <label for="EmpName">empName</label>
+                     <select name="EmpName" class="form-select" [(ngModel)]=" advanceObj.employeeId">
+                            <option  *ngFor="let emp of empData" [value]="emp.empId">{{emp.empName}}</option>
+                      </select>
+                    </div> 
+                    <div class="col-6">
+                        <label for="advanceDate">advanceDate</label>
+                        <input type="date" class="form-control" name="advanceDate" [(ngModel)]="advanceObj.advanceDate">
+                    </div>
+                    <div class="col-6">
+                        <label for="AdvanceAmoun">advanceAmount</label>
+                        <input type="number" class="form-control" name="AdvanceAmoun" [(ngModel)]="advanceObj.advanceAmount">
+                    </div>
+                    <div class="col-6">
+                        <label for="Reson">reson</label>
+                        <input type="string" class="form-control" name="Reson" [(ngModel)]="advanceObj.reason">
+                    </div>
+       
+                </div>
+                <div class="row">
+                    <div class="col-5 py-3 text-center">
+                        <button class="btn btn-primary px-5"(click)="resetObj()">Reset</button>
+                    </div>
+                     <div class="col-5 py-3 text-center">
+                        <button class="btn btn-success px-5" *ngIf="update==false" (click)="getAddEmpAdvance()">Submit</button>
+                          <button class="btn btn-warning px-5" *ngIf="update==true" (click)="getUpdateAdvance()">Update</button>
+                    </div> 
+                </div>
+             </div> 
+        </div>
+    </div>
+</div>

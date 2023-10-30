@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                New Employee
+            </div>
+             <div class="card-body">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>EmployeeId</th>
+                            <th>EmpName</th>
+                            <th>EmpContactNo</th>
+                            <th>AttendanceDate</th>
+                            <th>attendanceId</th>
+                            <th>InTime</th>
+                            <th>OutTime</th>
+                            <th>IsFullDay</th>
+                            <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let item of atendanceArray;let i=index ">
+                            <td>{{i+1}}</td>
+                            <td>{{item.employeeId}}</td>
+                            <td>{{item.empName}}</td>
+                            <td>{{item.empContactNo}}</td>
+                            <td>{{item.attendanceDate|date:'yyyy-MM-dd'}}</td>
+                            <td>{{item.attendanceId}}</td>
+                            <td>{{item.inTime|date:'shortTime'}}</td>
+                            <td>{{item.outTime|date:'shortTime'}}</td>
+                            <td>{{item.isFullDay?'Yes':'No'}}</td> 
+                            <td>
+                                <a  style="text-decoration:none;cursor:pointer;" class="bg-success mx-2 py-1 px-2 rounded text-white" (click)="getAtendanceByAtendanceId(item.attendanceId)">Edit</a>
+                    
+                                <a style="text-decoration:none; cursor:pointer;" class="bg-danger py-1 px-2 rounded text-white"(click)=" getDeleteEmpAtendance(item.attendanceId)">Delete</a>
+                            </td>
+                            
+                        </tr>
+                     </tbody>
+                  </table>
+             </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Add new Employee
+            </div>
+             <div class="card-body">
+                 <div class="row">
+                     <div class="col-6">
+                        <label for="EmpName">empName</label>
+                     <select name="EmpName" class="form-select" [(ngModel)]="postDataAtendance.employeeId">
+                            <option  *ngFor="let emp of empdata" [value]="emp.empId">{{emp.empName}}</option>
+                      </select>
+                    </div> 
+                    <div class="col-6">
+                        <label for="AttendanceDate">attendanceDate</label>
+                        <input type="date" class="form-control" name="AttendanceDate" [(ngModel)]="postDataAtendance.attendanceDate">
+                    </div>
+                    <div class="col-6">
+                        <label for="InTime">inTime</label>
+                        <input type="time" class="form-control" name="InTime" [(ngModel)]="postDataAtendance.inTime">
+                    </div>
+                    <div class="col-6">
+                        <label for="OutTime">outTime</label>
+                        <input type="time" class="form-control" name="OutTime" [(ngModel)]="postDataAtendance.outTime">
+                    </div>
+                    <div class="col-6">
+                        <label for="IsFullDay">isFullDay</label>
+                        <input type="checkbox" class="form-check-input" name="isFullDay" [(ngModel)]="postDataAtendance.isFullDay">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5 py-3 text-center">
+                        <button class="btn btn-primary px-5">Reset</button>
+                    </div>
+                    <div class="col-5 py-3 text-center">
+                        <button class="btn btn-success px-5" *ngIf=" btnupdate==false" (click)="getAddEmployeData()">Submit</button>
+                         <button class="btn btn-success px-5" *ngIf="btnupdate==true" (click)="getUpdateAtendanceEmploye()">Update</button> 
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+

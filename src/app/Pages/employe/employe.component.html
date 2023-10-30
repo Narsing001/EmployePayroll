@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                New Employee
+            </div>
+             <div class="card-body">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Emp_id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>City</th>
+                            <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let emp of emparray;let i=index ">
+                            <td>{{i+1}}</td>
+                            <td>{{emp.empId}}</td>
+                            <td>{{emp.empName}}</td>
+                            <td>{{emp.empEmail}}</td>
+                            <td>{{emp.empContactNo}}</td>
+                            <td>{{emp.city}}</td>
+                            <td>
+                                <i class="bg-success mx-2 py-1 px-2 rounded text-white" (click)="getEmployeById(emp.empId)">Edit</i>
+                    
+                                <i class="bg-danger py-1 px-2 rounded text-white" (click)="deleteEmploye(emp.empId)">Delete</i>
+                            </td>
+                            
+                        </tr>
+                     </tbody>
+                  </table>
+             </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Add new Employee
+            </div>
+             <div class="card-body">
+                 <div class="row">
+                    <div class="col-6">
+                        <label for="EmpName">empName</label>
+                        <input type="text" class="form-control" name="EmpName" [(ngModel)]="empobj.empName">
+                    </div>
+                    <div class="col-6">
+                        <label for="EmpContactNo">empContactNo</label>
+                        <input type="text" class="form-control" name="EmpContactNo" [(ngModel)]="empobj.empContactNo">
+                    </div>
+                    <div class="col-6">
+                        <label for="EmpAltContactNo">empAltContactNo</label>
+                        <input type="text" class="form-control" name="EmpAltContactNo" [(ngModel)]="empobj.empAltContactNo">
+                    </div>
+                    <div class="col-6">
+                        <label for="EmpEmail">empEmail</label>
+                        <input type="text" class="form-control" name="EmpEmail" [(ngModel)]="empobj.empEmail">
+                    </div>
+                    <div class="col-6">
+                        <label for="AddressLine1">addressLine1</label>
+                        <input type="text" class="form-control" name="AddressLine1" [(ngModel)]="empobj.addressLine1">
+                    </div>
+                    <div class="col-6">
+                        <label for="AddressLine2">addressLine2</label>
+                        <input type="text" class="form-control" name="addressLine2" [(ngModel)]="empobj.addressLine2">
+                    </div>
+                    <div class="col-6">
+                        <label for="Pincode">pincode</label>
+                        <input type="text" class="form-control" name="Pincode" [(ngModel)]="empobj.pincode">
+                    </div>
+                    <div class="col-6">
+                        <label for="City">city</label>
+                        <input type="text" class="form-control" name="City" [(ngModel)]="empobj.city">
+                    </div>
+                    <div class="col-6">
+                        <label for="State">state</label>
+                        <input type="text" class="form-control" name="State" [(ngModel)]="empobj.state">
+                    </div>
+                    <div class="col-6">
+                        <label for="BankName">bankName</label>
+                        <input type="text" class="form-control" name="BankName" [(ngModel)]="empobj.bankName">
+                    </div>
+                    <div class="col-6">
+                        <label for="IFSC">iFSC</label>
+                        <input type="text" class="form-control" name="IFSC" [(ngModel)]="empobj.iFSC">
+                    </div>
+                    <div class="col-6">
+                        <label for="AccountNo">accountNo</label>
+                        <input type="text" class="form-control" name="accountNo" [(ngModel)]="empobj.accountNo">
+                    </div>
+                    <div class="col-6">
+                        <label for="BankBranch">bankBranch</label>
+                        <input type="text" class="form-control" name="BankBranch" [(ngModel)]="empobj.bankBranch">
+                    </div>
+                    <div class="col-6">
+                        <label for="Salary">salary</label>
+                        <input type="number" class="form-control" name="Salary" [(ngModel)]="empobj.salary">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-5 py-3 text-center">
+                        <button class="btn btn-primary px-5">Reset</button>
+                    </div>
+                    <div class="col-5 py-3 text-center">
+                        <button class="btn btn-success px-5" *ngIf="empobj.empId==0" (click)="saveEmployedata()">Submit</button>
+                        <button class="btn btn-success px-5" *ngIf="empobj.empId!=0" (click)="updateEmploye()">Update</button>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>

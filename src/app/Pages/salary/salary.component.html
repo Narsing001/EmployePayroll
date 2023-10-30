@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                New Employee
+            </div>
+             <div class="card-body">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>EmpName</th>
+                            <th>EmployeeId</th>
+                            <th>EmpContactNo</th>
+                            <th>SalaryDate</th> 
+                            <th>PresentDays</th>
+                            <th>SalaryAmount</th>
+                            <th>SalaryId</th>
+                            <th>TotalAdvance</th>
+                           
+                        </tr>
+                     </thead>
+                     <tbody>
+                         <tr *ngFor="let item of empSalaryArray ;let i=index ">
+                            <td>{{i+1}}</td>
+                            <td>{{item.empName}}</td>
+                            <td>{{item.employeeId}}</td>
+                            <td>{{item.empContactNo}}</td>
+                            <td>{{item.salaryDate|date:'yyyy-MM-dd'}}</td>
+                            <td>{{item.presentDays}}</td>
+                            <td>{{item.salaryAmount}}</td>
+                            <td>{{item.salaryId}}</td>
+                            <td>{{item.totalAdvance}}</td> 
+                            <!-- <td>
+                                <a  style="text-decoration:none;cursor:pointer;" class="bg-success mx-2 py-1 px-2 rounded text-white" (click)="getAtendanceByAtendanceId(item.attendanceId)">Edit</a>
+                    
+                                <a style="text-decoration:none; cursor:pointer;" class="bg-danger py-1 px-2 rounded text-white"(click)=" getDeleteEmpAtendance(item.attendanceId)">Delete</a>
+                            </td>
+                             -->
+                        </tr> 
+                     </tbody>
+                  </table>
+             </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Add new Employee
+            </div>
+             <div class="card-body">
+                 <div class="row">
+                     <div class="col-6">
+                        <label for="EmpName">empName</label>
+                     <select name="EmpName" (change)="getLeveAndAdvance()" class="form-select" [(ngModel)]="empSalObj.employeeId">
+                            <option  *ngFor="let emp of empdata" [value]="emp.empId">{{emp.empName}}</option>
+                      </select>
+                    </div> 
+                    <div class="col-6">
+                        <label for="SalaryDate">salaryDate</label>
+                        <input type="date" class="form-control" name="SalaryDate" [(ngModel)]="empSalObj.salaryDate">
+                    </div>
+                    <div class="col-6">
+                        <label for="TotalAdvance">totalAdvance</label>
+                        <input type="number" class="form-control" name="TotalAdvance" [(ngModel)]="empSalObj.totalAdvance">
+                    </div>
+                    <div class="col-6">
+                        <label for="PresentDays">presentDays</label>
+                        <input type="number" class="form-control" name="PresentDays" [(ngModel)]="empSalObj.presentDays">
+                    </div>
+                    <div class="col-6">
+                        <label for="SalaryAmount">salaryAmount</label>
+                        <input (focus)=" calculateSalary()" type="number" class="form-control" name="SalaryAmount" [(ngModel)]="empSalObj.salaryAmount">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5 py-3 text-center">
+                        <button class="btn btn-primary px-5">Reset</button>
+                    </div>
+                     <div class="col-5 py-3 text-center">
+                        <button class="btn btn-success px-5"(click)="SaveSalary()">Submit</button>
+                         <!-- <button class="btn btn-success px-5" *ngIf="btnupdate==true" (click)="getUpdateAtendanceEmploye()">Update</button>  -->
+                    </div> 
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+

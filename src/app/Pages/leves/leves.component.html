@@ -1,0 +1,90 @@
+ <div class="row">
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Leves
+            </div>
+             <div class="card-body">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>EmployeeId</th>
+                            <th>EmpName</th>
+                            
+                            <th>leaveDate</th>
+                            <th>leaveId</th>
+                             <th>leaveReson</th>
+                             <th>FullLeaves</th>
+                             <th>HalfLeaves</th>
+                            <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let item of levesArray;let i=index ">
+                            <td>{{i+1}}</td>
+                            <td>{{item.employeeId}}</td>
+                            <td>{{item.empName}}</td>
+                            
+                            <td>{{item.leaveDate|date:'yyyy-MM-dd'}}</td>
+                            <td>{{item.leaveId}}</td>
+                            <td>{{item.leaveReason}}</td>
+                             <td>{{item.noOfFullDayLeaves}}</td>
+                              <td>{{item.noOfHalfDayLeaves}}</td>
+                           
+                             <td>
+                                <a  style="text-decoration:none;cursor:pointer;"  (click)="getEmpLevesById(item.employeeId)" class="bg-success mx-2 py-1 px-2 rounded text-white" >Edit</a>
+                    
+                                <a style="text-decoration:none; cursor:pointer;" class="bg-danger py-1 px-2 rounded text-white" >Delete</a>
+                            </td>
+                             
+                        </tr>
+                     </tbody>
+                  </table>
+             </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Add New Leves
+            </div>
+              <div class="card-body">
+                 <div class="row">
+                     <div class="col-6">
+                        <label for="EmpName">empName</label>
+                     <select name="EmpName" class="form-select" [(ngModel)]="postDataObj.employeeId">
+                            <option  *ngFor="let emp of empData" [value]="emp.empId">{{emp.empName}}</option>
+                      </select>
+                    </div> 
+                    <div class="col-6">
+                        <label for="LevesDate">levesDate</label>
+                        <input type="date" class="form-control" name="LevesDate" [(ngModel)]=" postDataObj.leaveDate">
+                    </div>
+                    <div class="col-6">
+                        <label for="LevesReson">levesReson</label>
+                        <input type="text" class="form-control" name="LevesReson" [(ngModel)]=" postDataObj.leaveReason">
+                    </div>
+                    <div class="col-6">
+                        <label for="NoOfFullDayLeaves">noOfFullDayLeaves</label>
+                        <input type="string" class="form-control" name="NoOfFullDayLeaves" [(ngModel)]=" postDataObj.noOfFullDayLeaves">
+                    </div>
+                    <div class="col-6">
+                        <label for="NoOfHalfDayLeaves">noOfHalfDayLeaves</label>
+                        <input type="string" class="form-control" name="NoOfHalfDayLeaves" [(ngModel)]=" postDataObj.noOfHalfDayLeaves">
+                    </div>
+       
+                </div>
+                <div class="row">
+                    <div class="col-5 py-3 text-center">
+                        <button class="btn btn-primary px-5"(click)=" resetObj()">Reset</button>
+                    </div>
+                     <div class="col-5 py-3 text-center">
+                        <button class="btn btn-success px-5" *ngIf="update==false"(click)="postAllLeves()">Submit</button>
+                     <button class="btn btn-warning px-5" *ngIf="update==true" (click)="  updateData()">Update</button> 
+                    </div> 
+                </div>
+             </div>  
+        </div>
+    </div>
+</div>
